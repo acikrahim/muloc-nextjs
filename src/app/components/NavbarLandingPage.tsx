@@ -1,76 +1,81 @@
 "use client";
 
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faUserDoctor, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import kodikas from '../assets/kodikas.png'
 
 const NavbarLandingPage = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpenProfile, setIsOpenProfile] = useState(false);
+	const [isOpenMenu, setIsOpenMenu] = useState(false);
 
 	return (
 		<>
-			<nav
-				className="fixed top-0 left-0 w-screen border-solid border-b border-gray-400 flex items-center justify-between flex-wrap p-4 lg:px-32"
-				style={{
-					'boxShadow': '0px 2px 8px 2px rgba(0, 0, 0, .16)'
-        }}
-			>
+			<nav className="fixed top-0 left-0 w-screen px-12 py-6">
+				<div className="flex items-center justify-between flex-wrap relative">
 
-			<div className="flex flex-shrink-0 items-center">
-				<img
-					src={kodikas.src}
-					className="w-100 h-10"
-				/>
-			</div>
+					<div className="logo">
+						<img
+							src={kodikas.src}
+							className="w-48 h-16"
+						/>
+					</div>
 
-			<div className="block lg:hidden">
-				<button
-					onClick={() => setIsOpen(!isOpen)}
-					className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400"
-				>
-					<svg
-						className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
-						viewBox="0 0 20 20"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-					</svg>
-					<svg
-						className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
-						viewBox="0 0 20 20"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
-					</svg>
-				</button>
-			</div>
+					<div className="items-center justify-between ml-4 hidden md:flex">
+						<ul className="flex flex-row font-medium p-4 text-lg">
+							<li>
+								<a className="block px-4 text-black rounded">What We Offer</a>
+							</li>
+							<li>
+								<a className="block px-4 text-black rounded">Pricing</a>
+							</li>
+							<li>
+								<a className="block px-4 text-black rounded">Blog</a>
+							</li>
+							<li>
+								<a className="block px-4 text-black rounded">Contact Us</a>
+							</li>
+						</ul>
+					</div>
 
-			<div
-				className={`w-full ml-auto lg:flex lg:items-center lg:w-auto xs:max-lg:flex-col ${isOpen ? 'flex' : 'hidden'
-					}`}
-			>
-				{[
-					["home", "/"],
-					["about", "/"],
-					["qualifications", "/"],
-					["services", "/"],
-					["projects", "/projects"],
-					["blog", "/"],
-				].map(([title, url]) => (
-					<a
-						key={title}
-						href={url}
-						className="px-4 py-2 text-base font-bold text-white text-amber-100 hover:text-yellow-400 xs:max-lg:text-right xs:text-sm"
-						style={{
-							'textShadow': '1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000'
-						}}
-					>
-						{title}
-					</a>
-				))}
-			</div>
-		</nav >
-        </>
-    );
+					<div className="flex items-center">
+						<button type="button"
+							className="relative flex mr-3 text-sm rounded-full"
+							onClick={() => setIsOpenProfile(!isOpenProfile)}>
+							<FontAwesomeIcon size="2x" icon={faUserDoctor} />
+
+							<div className={`absolute right-0 top-10 z-50 my-4 text-base list-none rounded-md bg-gray-600 ${isOpenProfile ? '' : 'hidden'}`}>
+								<div className="px-4 py-3">
+									<span className="block text-sm text-gray-900">Bonnie Green</span>
+									<span className="block text-sm  text-gray-500 truncate">name@flowbite.com</span>
+								</div>
+								<ul className="py-2">
+									<li>
+										<a href="#" className="block px-4 py-2 text-sm text-white hover:bg-gray-100">Dashboard</a>
+									</li>
+									<li>
+										<a href="#" className="block px-4 py-2 text-sm text-white hover:bg-gray-100">Settings</a>
+									</li>
+									<li>
+										<a href="#" className="block px-4 py-2 text-sm text-white hover:bg-gray-100">Earnings</a>
+									</li>
+									<li>
+										<a href="#" className="block px-4 py-2 text-sm text-white hover:bg-gray-100">Sign out</a>
+									</li>
+								</ul>
+							</div>
+						</button>
+						<button type="button"
+							className="inline-flex items-center ml-2 text-sm text-black rounded-lg md:hidden">
+							<FontAwesomeIcon size="2x" icon={faBars} />
+						</button>
+					</div>
+
+				</div>
+
+			</nav>
+		</>
+	);
 };
 
 export default NavbarLandingPage;
