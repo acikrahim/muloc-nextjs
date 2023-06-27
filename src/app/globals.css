@@ -30,17 +30,7 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
-@media screen and (min-width: 1024px) {
-  .logo {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 6rem)
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  .logo {
-    display: flex;
-    align-items: center;
-  }
+.h-off-navbar {
+  height: calc(100vh - 8.5rem);
+  margin-top: 8.5rem;
 }
